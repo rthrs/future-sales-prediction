@@ -1,0 +1,20 @@
+# Available columns in training set
+```
+date
+date_block_num
+shop_id
+item_id
+item_price
+item_cnt_day
+price_category
+month_num
+item_name
+item_category_id
+name_1
+name_2
+name_3
+shop_name
+shop_city
+shop_type
+item_category_name
+```

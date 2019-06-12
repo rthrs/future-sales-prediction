@@ -1,0 +1,5 @@
+__pycache__
+XDG_CACHE_HOME
+.vscode
+.venv
+venv
