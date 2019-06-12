@@ -18,3 +18,12 @@ shop_city
 shop_type
 item_category_name
 ```
+# Sklearn test
+
+```
+Validation RMSE when not specifying max_leaf_nodes: 2.3348842655881716
+
+Validation MAE for best value of max_leaf_nodes: 2.3444069992647756
+
+Validation MAE for Random Forest Model: 1.9264634377259093
+```

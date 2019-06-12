@@ -48,11 +48,12 @@ def get_price_category(price):
 
 # Add items features
 items['name_1'], items['name_2'] = items['item_name'].str.split('[', 1).str
-items['name_1'], items['name_3'] = items['item_name'].str.split('(', 1).str
+items['name_1'], items['name_3'] = items['name_1'].str.split('(', 1).str
 
 items['name_2'] = items['name_2'].str.replace('[^A-Za-z0-9А-Яа-я]+', ' ').str.lower()
 items['name_3'] = items['name_3'].str.replace('[^A-Za-z0-9А-Яа-я]+', ' ').str.lower()
-items = items.fillna('NO_DATA')
+
+items = items.fillna('NO_DATA').replace(r'^\s*$', 'NO_DATA', regex=True)
 
 # Add shops featues
 shops['shop_name'] = shops['shop_name'].apply(lambda x: x.lower()).str.replace('[^\w\s]', '').str.replace('\d+','').str.strip()

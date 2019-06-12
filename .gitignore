@@ -3,3 +3,4 @@ XDG_CACHE_HOME
 .vscode
 .venv
 venv
+training_set.csv
