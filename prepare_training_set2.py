@@ -24,6 +24,23 @@ test = pd.read_csv('./input/test.csv.gz').set_index('ID')
 # Coerce data
 train = downcast_dtypes(train)
 
+# Remove outliers
+train = train[train.item_price<100000]
+train = train[train.item_cnt_day<1001]
+
+# Repair data
+median = train[(train.shop_id==32)&(train.item_id==2973)&(train.date_block_num==4)&(train.item_price>0)].item_price.median()
+train.loc[train.item_price<0, 'item_price'] = median
+
+train.loc[train.shop_id == 0, 'shop_id'] = 57
+test.loc[test.shop_id == 0, 'shop_id'] = 57
+# Якутск ТЦ "Центральный"
+train.loc[train.shop_id == 1, 'shop_id'] = 58
+test.loc[test.shop_id == 1, 'shop_id'] = 58
+# Жуковский ул. Чкалова 39м²
+train.loc[train.shop_id == 10, 'shop_id'] = 11
+test.loc[test.shop_id == 10, 'shop_id'] = 11
+
 def get_price_category(price):
     if (price < 2):
         return 0

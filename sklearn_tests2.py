@@ -3,6 +3,10 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.svm import SVR
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import GradientBoostingRegressor
 
 from utils import downcast_dtypes, encode_features, rmse
 
@@ -38,7 +42,36 @@ print("Validation RMSE for best value of max_leaf_nodes: {}".format(val_rmse))
 rf_model = RandomForestRegressor(random_state=1, verbose=3)
 rf_model.fit(train_X, train_y)
 
-rf_val_predictions = rf_model.predict(val_X)
-rf_val_rmse = rmse(rf_val_predictions, val_y)
+val_predictions = rf_model.predict(val_X)
+rf_val_rmse = rmse(val_predictions, val_y)
 print("Validation RMSE for Random Forest Model: {}".format(rf_val_rmse))
 # Validation RMSE for Random Forest Model: 2.238423610462634
+
+model = LinearRegression()
+model.fit(train_X, train_y)
+
+val_predictions = model.predict(val_X)
+rf_val_rmse = rmse(val_predictions, val_y)
+print("Validation RMSE for Linear Regression: {}".format(rf_val_rmse))
+# Validation RMSE for Linear Regression: 3.37160140437921
+
+model = SVR(kernel='linear', verbose=True)
+model.fit(train_X, train_y)
+
+val_predictions = model.predict(val_X)
+rf_val_rmse = rmse(val_predictions, val_y)
+print("Validation RMSE for SVR rbf: {}".format(rf_val_rmse))
+
+model = LogisticRegression(verbose=3)
+model.fit(train_X, train_y)
+
+val_predictions = model.predict(val_X)
+rf_val_rmse = rmse(val_predictions, val_y)
+print("Validation RMSE for SVR rbf: {}".format(rf_val_rmse))
+
+model = GradientBoostingRegressor(verbose=3)
+model.fit(train_X, train_y)
+
+val_predictions = model.predict(val_X)
+rf_val_rmse = rmse(val_predictions, val_y)
+print("Validation RMSE for GradientBoostingRegressor: {}".format(rf_val_rmse))
