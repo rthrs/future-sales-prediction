@@ -4,3 +4,4 @@ XDG_CACHE_HOME
 .venv
 venv
 training_set.csv
+activate.sh
