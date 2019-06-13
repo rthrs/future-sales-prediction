@@ -21,7 +21,9 @@ def encode_features(df, columns):
 def rmse(predictions, values):
     return mean_squared_error(predictions, values)**0.5
 
-# Change string to floats - didn't work
-# enc = OneHotEncoder(handle_unknown='ignore')
-# str_cols = training_set.columns[training_set.dtypes.eq('object')]
-# training_set[str_cols] = training_set[str_cols].apply(pd.to_numeric, errors='coerce')
+def save_submission(name, output):
+    output.to_csv(f'{name}.csv.gz', index=False)
+
+def save_submission2(name, test_data, test_preds):
+    output = pd.DataFrame({'ID': test_data['ID'], 'item_cnt_month': test_preds})
+    output.to_csv(f'{name}.csv.gz', index=False)
